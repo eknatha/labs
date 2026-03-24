@@ -5,125 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EknathaLabs | Labs</title>
 
-  <!-- Google Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <script src="https://kit.fontawesome.com/4b5d8b0b3a.js" crossorigin="anonymous"></script>
-
   <style>
+    :root {
+      --bg: #020617;
+      --card: #020617;
+      --text: #e2e8f0;
+      --subtext: #94a3b8;
+      --border: #1e293b;
+      --accent: #22c55e;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #020617;
+      --subtext: #475569;
+      --border: #cbd5f5;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #020617, #020617);
-      color: #e2e8f0;
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
       text-align: center;
-      padding: 40px 20px;
-      border-bottom: 1px solid #1e293b;
-      animation: fadeIn 1s ease-in-out;
+      padding: 30px;
+      border-bottom: 1px solid var(--border);
     }
 
     header h1 {
-      color: #22c55e;
       margin: 0;
-      font-size: 2.5rem;
+      color: var(--accent);
     }
 
-    header p {
-      color: #94a3b8;
+    nav {
       margin-top: 10px;
     }
 
     nav a {
-      color: #38bdf8;
-      margin: 0 12px;
+      margin: 0 10px;
       text-decoration: none;
+      color: #38bdf8;
       font-weight: 600;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+    }
+
+    button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
     }
 
     .container {
       max-width: 1100px;
       margin: auto;
-      padding: 30px 20px;
+      padding: 20px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      gap: 20px;
     }
 
     .card {
-      background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 14px;
-      padding: 25px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: fadeUp 0.8s ease forwards;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      background: var(--card);
+      transition: 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      border-color: #22c55e;
-    }
-
-    .card i {
-      font-size: 28px;
-      color: #38bdf8;
-      margin-bottom: 10px;
+      transform: translateY(-5px);
+      border-color: var(--accent);
     }
 
     .card h2 {
-      margin: 10px 0;
+      margin: 0;
       color: #facc15;
-      font-size: 1.3rem;
     }
 
     .card p {
-      color: #cbd5f5;
-      font-size: 0.95rem;
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #22c55e;
-      text-decoration: none;
-      font-weight: 600;
+      color: var(--subtext);
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      border-top: 1px solid #1e293b;
-      color: #64748b;
+      padding: 20px;
+      border-top: 1px solid var(--border);
       margin-top: 40px;
-      font-size: 0.9rem;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
 </head>
@@ -132,7 +126,7 @@
 
 <header>
   <h1>🧪 EknathaLabs Labs</h1>
-  <p>Real DevOps Experiments | Kubernetes | Automation | Cloud</p>
+  <p>DevOps | SRE | Platform Engineering Projects</p>
 
   <nav>
     <a href="https://eknathalabs.com">Home</a>
@@ -141,45 +135,58 @@
   </nav>
 </header>
 
+<div class="controls">
+  <input type="text" id="search" placeholder="Search projects...">
+  <button onclick="toggleTheme()">🌗 Toggle</button>
+</div>
+
 <div class="container">
-
-  <div class="grid">
+  <div class="grid" id="projects">
 
     <div class="card">
-      <i class="fas fa-server"></i>
-      <h2>Kubernetes Cluster Setup</h2>
-      <p>Production-ready cluster setup using kubeadm with real-world configs.</p>
-      <a href="#">View Project →</a>
+      <h2>Kubernetes Cluster</h2>
+      <p>Setup cluster using kubeadm</p>
     </div>
 
     <div class="card">
-      <i class="fab fa-docker"></i>
       <h2>Docker Automation</h2>
-      <p>Automate build, tag, and deployment pipelines for containers.</p>
-      <a href="#">View Project →</a>
+      <p>Container automation scripts</p>
     </div>
 
     <div class="card">
-      <i class="fas fa-cloud"></i>
-      <h2>Terraform AWS Infra</h2>
-      <p>Provision scalable AWS infrastructure using Terraform modules.</p>
-      <a href="#">View Project →</a>
+      <h2>Terraform AWS</h2>
+      <p>Infrastructure as code</p>
     </div>
 
     <div class="card">
-      <i class="fas fa-chart-line"></i>
       <h2>Monitoring Stack</h2>
-      <p>Prometheus + Grafana setup with alerts and dashboards.</p>
-      <a href="#">View Project →</a>
+      <p>Prometheus + Grafana</p>
     </div>
 
   </div>
-
 </div>
 
 <footer>
   <p>© 2026 EknathaLabs | Empowering DevOps, SRE & Platform Engineers 🚀</p>
 </footer>
+
+<script>
+  // Dark/Light Toggle
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+  }
+
+  // Search Filter
+  document.getElementById("search").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+      let text = card.innerText.toLowerCase();
+      card.style.display = text.includes(filter) ? "" : "none";
+    });
+  });
+</script>
 
 </body>
 </html>
