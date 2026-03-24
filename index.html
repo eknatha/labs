@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EknathaLabs | Labs</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/4b5d8b0b3a.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #020617, #020617);
+      color: #e2e8f0;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 1px solid #1e293b;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header h1 {
+      color: #22c55e;
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      color: #94a3b8;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #38bdf8;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border-color: #22c55e;
+    }
+
+    .card i {
+      font-size: 28px;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      margin: 10px 0;
+      color: #facc15;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      color: #cbd5f5;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #22c55e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid #1e293b;
+      color: #64748b;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧪 EknathaLabs Labs</h1>
+  <p>Real DevOps Experiments | Kubernetes | Automation | Cloud</p>
+
+  <nav>
+    <a href="https://eknathalabs.com">Home</a>
+    <a href="https://blog.eknathalabs.com">Blog</a>
+    <a href="https://github.com/eknatha">GitHub</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="grid">
+
+    <div class="card">
+      <i class="fas fa-server"></i>
+      <h2>Kubernetes Cluster Setup</h2>
+      <p>Production-ready cluster setup using kubeadm with real-world configs.</p>
+      <a href="#">View Project →</a>
+    </div>
+
+    <div class="card">
+      <i class="fab fa-docker"></i>
+      <h2>Docker Automation</h2>
+      <p>Automate build, tag, and deployment pipelines for containers.</p>
+      <a href="#">View Project →</a>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-cloud"></i>
+      <h2>Terraform AWS Infra</h2>
+      <p>Provision scalable AWS infrastructure using Terraform modules.</p>
+      <a href="#">View Project →</a>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-chart-line"></i>
+      <h2>Monitoring Stack</h2>
+      <p>Prometheus + Grafana setup with alerts and dashboards.</p>
+      <a href="#">View Project →</a>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 EknathaLabs | Empowering DevOps, SRE & Platform Engineers 🚀</p>
+</footer>
+
+</body>
+</html>
