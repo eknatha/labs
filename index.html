@@ -1,193 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EknathaLabs | Labs</title>
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #020617;
-      --card: #020617;
-      --text: #e2e8f0;
-      --subtext: #94a3b8;
-      --border: #1e293b;
-      --accent: #22c55e;
-    }
-
-    body.light {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #020617;
-      --subtext: #475569;
-      --border: #cbd5f5;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    header {
-      text-align: center;
-      padding: 30px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    header h1 {
-      margin: 0;
-      color: var(--accent);
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #38bdf8;
-      font-weight: 600;
-    }
-
-    .controls {
-      text-align: center;
-      margin: 20px;
-    }
-
-    input {
-      padding: 10px;
-      width: 250px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-    }
-
-    button {
-      margin-left: 10px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background: var(--accent);
-      color: white;
-      cursor: pointer;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      background: var(--card);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-    }
-
-    .card h2 {
-      margin: 0;
-      color: #facc15;
-    }
-
-    .card p {
-      color: var(--subtext);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EknathaLabs — Practical DevOps Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0e14; --bg2: #0f1420; --bg3: #151c2c;
+    --surface: #1a2236; --surface2: #1f2940;
+    --border: rgba(56,189,248,0.12); --border2: rgba(56,189,248,0.22);
+    --accent: #38bdf8; --accent2: #0ea5e9;
+    --green: #4ade80; --amber: #fbbf24; --purple: #a78bfa;
+    --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+    --font: 'Sora', sans-serif; --mono: 'JetBrains Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(56,189,248,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.025) 1px, transparent 1px);
+    background-size: 48px 48px; pointer-events: none; z-index: 0;
+  }
+  .banner {
+    position: relative; z-index: 100;
+    background: repeating-linear-gradient(-45deg, #1a1400, #1a1400 10px, #221b00 10px, #221b00 20px);
+    border-bottom: 2px solid var(--amber); padding: 9px 20px;
+    text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .banner span { font-family: var(--mono); font-size: 12px; color: var(--amber); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .banner-badge { background: var(--amber); color: #1a1400; font-family: var(--mono); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.1em; text-transform: uppercase; }
+  nav {
+    position: relative; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+    background: rgba(10,14,20,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--purple)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 14px; color: #0a0e14; flex-shrink: 0; }
+  .logo-text { font-size: 17px; font-weight: 700; color: var(--text); }
+  .logo-text span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
+  .nav-links a:hover { background: var(--surface); color: var(--text); }
+  .nav-cta { background: var(--accent) !important; color: #0a0e14 !important; font-weight: 600 !important; padding: 7px 18px !important; border-radius: 7px !important; }
+  .nav-cta:hover { background: #7dd3fc !important; }
+  .hero { position: relative; z-index: 1; padding: 80px 40px 64px; text-align: center; max-width: 860px; margin: 0 auto; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(56,189,248,0.07); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 16px; font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 28px; }
+  .eyebrow-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; color: var(--text); }
+  .hero h1 .hl { color: var(--accent); }
+  .hero h1 .hl2 { color: var(--green); }
+  .hero-sub { font-size: 17px; color: var(--text2); line-height: 1.7; max-width: 580px; margin: 0 auto 40px; }
+  .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #0a0e14; font-family: var(--font); font-size: 14px; font-weight: 600; padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--text); font-family: var(--font); font-size: 14px; font-weight: 500; padding: 11px 24px; border-radius: 8px; border: 1px solid var(--border2); cursor: pointer; text-decoration: none; transition: all 0.2s; }
+  .btn-secondary:hover { background: var(--surface); border-color: var(--accent); }
+  .terminal-wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto 80px; padding: 0 40px; }
+  .terminal { background: var(--bg2); border: 1px solid var(--border2); border-radius: 12px; overflow: hidden; box-shadow: 0 0 60px rgba(56,189,248,0.06); }
+  .terminal-bar { background: var(--surface); padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+  .tb { width: 11px; height: 11px; border-radius: 50%; }
+  .tb-r { background: #ff5f56; } .tb-y { background: #ffbd2e; } .tb-g { background: #27c93f; }
+  .terminal-title { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-left: auto; margin-right: auto; letter-spacing: 0.04em; }
+  .terminal-body { padding: 20px 22px 24px; font-family: var(--mono); font-size: 13px; line-height: 1.8; }
+  .t-prompt { color: var(--green); } .t-cmd { color: var(--text); } .t-out { color: var(--text3); }
+  .t-accent { color: var(--accent); } .t-purple { color: var(--purple); } .t-amber { color: var(--amber); }
+  .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); vertical-align: text-bottom; animation: blink 1.2s step-end infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+  .section { position: relative; z-index: 1; padding: 72px 40px; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .section h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+  .section h2 span { color: var(--accent); }
+  .paths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+  .path-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; cursor: pointer; transition: all 0.25s; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; }
+  .path-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.25s; }
+  .path-card:hover { border-color: var(--border2); background: var(--surface2); transform: translateY(-2px); }
+  .path-card:hover::before { opacity: 1; }
+  .pc-blue::before { background: var(--accent); } .pc-green::before { background: var(--green); }
+  .pc-purple::before { background: var(--purple); } .pc-amber::before { background: var(--amber); }
+  .path-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .pi-blue { background: rgba(56,189,248,0.1); } .pi-green { background: rgba(74,222,128,0.1); }
+  .pi-purple { background: rgba(167,139,250,0.1); } .pi-amber { background: rgba(251,191,36,0.1); }
+  .path-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .path-desc { font-size: 13px; color: var(--text2); line-height: 1.6; flex: 1; }
+  .path-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+  .path-count { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+  .path-tag { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .pt-soon { background: rgba(251,191,36,0.12); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+  .pt-free { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.25); }
+  .features-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto; }
+  .feat-item { text-align: center; }
+  .feat-icon { width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--surface); border: 1px solid var(--border); }
+  .feat-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .feat-desc { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .cta-section { position: relative; z-index: 1; padding: 80px 40px; text-align: center; overflow: hidden; }
+  .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, transparent 70%); pointer-events: none; }
+  .cta-section h2 { font-size: clamp(28px, 4.5vw, 42px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 12px; color: var(--text); }
+  .cta-section p { font-size: 16px; color: var(--text2); margin-bottom: 36px; }
+  footer { position: relative; z-index: 1; background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 40px 32px; }
+  .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+  .footer-brand p { font-size: 13px; color: var(--text3); margin-top: 10px; max-width: 280px; line-height: 1.6; }
+  .footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; font-family: var(--mono); }
+  .footer-col a { display: block; font-size: 13.5px; color: var(--text2); text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 12px; color: var(--text3); font-family: var(--mono); }
+  .social-links { display: flex; gap: 12px; }
+  .social-links a { width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: var(--text3); text-decoration: none; font-size: 14px; transition: all 0.2s; }
+  .social-links a:hover { border-color: var(--border2); color: var(--accent); background: var(--surface); }
+  .construction-overlay { position: relative; z-index: 1; margin: 0 40px; background: linear-gradient(135deg, rgba(251,191,36,0.05), rgba(56,189,248,0.05)); border: 1px solid rgba(251,191,36,0.2); border-radius: 12px; padding: 20px 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .co-text h3 { font-size: 15px; font-weight: 600; color: var(--amber); margin-bottom: 4px; }
+  .co-text p { font-size: 13px; color: var(--text2); }
+  .co-badge { margin-left: auto; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); border-radius: 20px; padding: 6px 16px; font-family: var(--mono); font-size: 12px; color: var(--amber); white-space: nowrap; }
+</style>
 </head>
-
 <body>
 
-<header>
-  <h1>🧪 EknathaLabs Labs</h1>
-  <p>DevOps | SRE | Platform Engineering Projects</p>
-
-  <nav>
-    <a href="https://eknathalabs.com">Home</a>
-    <a href="https://blog.eknathalabs.com">Blog</a>
-    <a href="https://learn.eknathalabs.com">Learn</a>
-    <a href="https://github.com/eknatha">GitHub</a>
-  </nav>
-</header>
-
-<div class="controls">
-  <input type="text" id="search" placeholder="Search projects...">
-  <button onclick="toggleTheme()">🌗 Toggle</button>
+<!-- TOP BANNER -->
+<div class="banner">
+  <span class="banner-badge">🚧 Under Construction</span>
+  <span>labs.eknathalabs.com is being built — Something awesome is coming for DevOps learners</span>
+  <span class="banner-badge">Coming Soon</span>
 </div>
 
-<div class="container">
-  <div class="grid" id="projects">
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">EL</div>
+    <span class="logo-text">eknatha<span>labs</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Labs</a></li>
+    <li><a href="#">Linux Docs</a></li>
+    <li><a href="#">Interview Prep</a></li>
+    <li><a href="https://eknathalabs.com" target="_blank">Main Site</a></li>
+    <li><a href="#" class="nav-cta">Notify Me →</a></li>
+  </ul>
+</nav>
 
-    <div class="card">
-      <h2>Kubernetes Cluster</h2>
-      <p>Setup cluster using kubeadm</p>
+<!-- CONSTRUCTION NOTICE -->
+<div style="height: 20px;"></div>
+<div class="construction-overlay">
+  <div style="font-size:24px; flex-shrink:0;">🏗️</div>
+  <div class="co-text">
+    <h3>Site Under Active Construction</h3>
+    <p>Interactive labs, hands-on Linux labs, Kubernetes playgrounds, and DevOps pathways — all launching soon.</p>
+  </div>
+  <div class="co-badge">Status: Building...</div>
+</div>
+<div style="height: 20px;"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    Hands-on DevOps &amp; Platform Engineering Labs
+  </div>
+  <h1>Learn by<br><span class="hl">Doing</span>, Not Just <span class="hl2">Reading</span></h1>
+  <p class="hero-sub">Real terminal labs, production-grade scenarios, and interactive playgrounds for Linux, Kubernetes, Terraform, CI/CD and cloud — built by a practitioner in the field.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">🔔 Get Early Access</a>
+    <a href="https://eknathalabs.com" class="btn-secondary">Explore Main Site →</a>
+  </div>
+</section>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="tb tb-r"></div><div class="tb tb-y"></div><div class="tb tb-g"></div>
+      <span class="terminal-title">labs.eknathalabs.com — bash</span>
     </div>
-
-    <div class="card">
-      <h2>Docker Automation</h2>
-      <p>Container automation scripts</p>
+    <div class="terminal-body">
+      <div><span class="t-prompt">eknatha@labs</span><span class="t-cmd">:~$</span> <span class="t-accent">./launch-labs.sh</span></div>
+      <div class="t-out">Initializing EknathaLabs platform...</div>
+      <div class="t-out">► Loading Linux module...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#4ade80">[OK]</span></div>
+      <div class="t-out">► Loading Kubernetes labs...&nbsp;&nbsp;&nbsp; <span style="color:#4ade80">[OK]</span></div>
+      <div class="t-out">► Loading Terraform tracks...&nbsp;&nbsp; <span style="color:#4ade80">[OK]</span></div>
+      <div class="t-out">► Loading CI/CD pipelines...&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[SOON]</span></div>
+      <div class="t-out">► Loading Cloud labs (AWS/Azure) <span style="color:#fbbf24">[SOON]</span></div>
+      <div>&nbsp;</div>
+      <div><span class="t-purple">STATUS</span>: <span class="t-amber">Platform launching soon. Watch this space.</span></div>
+      <div><span class="t-prompt">eknatha@labs</span><span class="t-cmd">:~$</span> <span class="cursor"></span></div>
     </div>
-
-    <div class="card">
-      <h2>Terraform AWS</h2>
-      <p>Infrastructure as code</p>
-    </div>
-
-    <div class="card">
-      <h2>Monitoring Stack</h2>
-      <p>Prometheus + Grafana</p>
-    </div>
-
   </div>
 </div>
 
+<!-- LEARNING PATHS -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-tag">// learning_paths</div>
+    <h2>What You'll <span>Learn</span></h2>
+  </div>
+  <div class="paths-grid">
+    <a href="#" class="path-card pc-blue">
+      <div class="path-icon pi-blue">🐧</div>
+      <div class="path-name">Linux for DevOps</div>
+      <div class="path-desc">7-module production-grade Linux curriculum. File management, process control, networking, disk ops, log analysis, and system monitoring.</div>
+      <div class="path-footer">
+        <span class="path-count">7 modules · 50+ commands</span>
+        <span class="path-tag pt-free">Available</span>
+      </div>
+    </a>
+    <a href="#" class="path-card pc-green">
+      <div class="path-icon pi-green">☸️</div>
+      <div class="path-name">Kubernetes Labs</div>
+      <div class="path-desc">Hands-on CKA + CKS exam prep with real cluster scenarios, RBAC, network policies, and GitOps workflows via ArgoCD.</div>
+      <div class="path-footer">
+        <span class="path-count">CKA + CKS tracks</span>
+        <span class="path-tag pt-soon">Coming Soon</span>
+      </div>
+    </a>
+    <a href="#" class="path-card pc-purple">
+      <div class="path-icon pi-purple">🏗️</div>
+      <div class="path-name">Terraform &amp; IaC</div>
+      <div class="path-desc">Multi-cloud infrastructure as code on AWS and Azure. Reusable modules, state management, CI/CD integration, and real-world patterns.</div>
+      <div class="path-footer">
+        <span class="path-count">AWS + Azure focused</span>
+        <span class="path-tag pt-soon">Coming Soon</span>
+      </div>
+    </a>
+    <a href="#" class="path-card pc-amber">
+      <div class="path-icon pi-amber">⚙️</div>
+      <div class="path-name">Platform Engineering</div>
+      <div class="path-desc">Internal developer platforms, golden paths, GitHub Actions, observability stacks, and the tools that make platform engineers irreplaceable.</div>
+      <div class="path-footer">
+        <span class="path-tag pt-soon">Coming Soon</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-section">
+  <div class="section-header">
+    <div class="section-tag">// why_eknathalabs</div>
+    <h2>Built by a <span>Practitioner</span></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feat-item">
+      <div class="feat-icon">🖥️</div>
+      <div class="feat-title">Real Terminal Labs</div>
+      <div class="feat-desc">Not just reading docs — actual hands-on terminal environments where you run real commands against real systems.</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🎯</div>
+      <div class="feat-title">Production Scenarios</div>
+      <div class="feat-desc">Labs based on real incidents and problems from 13 years of AWS, Azure, Linux, and Kubernetes operations.</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">📋</div>
+      <div class="feat-title">Interview Ready</div>
+      <div class="feat-desc">Every lab maps to a real interview question. Practice, and then go ace that Platform Engineer or SRE round.</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🔓</div>
+      <div class="feat-title">Free Core Content</div>
+      <div class="feat-desc">Core Linux and foundational cloud content always free. No paywalls on the fundamentals every DevOps engineer needs.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>Be the First to Know</h2>
+  <p>Drop your email — get notified when labs go live. No spam, ever.</p>
+  <div style="display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
+    <input type="email" placeholder="you@company.com" style="background:var(--surface); border:1px solid var(--border2); border-radius:8px; padding:11px 18px; color:var(--text); font-family:var(--font); font-size:14px; width:280px; outline:none;">
+    <a href="#" class="btn-primary">Notify Me →</a>
+  </div>
+  <p style="font-size:12px; color:var(--text3); margin-top:16px; font-family:var(--mono);">↳ or follow along at github.com/eknathareddyp</p>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 EknathaLabs | Empowering DevOps, SRE & Platform Engineers 🚀</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <div class="logo-icon">EL</div>
+        <span class="logo-text" style="font-size:16px;">eknatha<span style="color:var(--accent)">labs</span></span>
+      </a>
+      <p>Practical DevOps and Platform Engineering learning — built by a practitioner, for practitioners.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Content</h4>
+      <a href="https://eknatha.github.io/interview-prep">Interview Prep</a>
+      <a href="https://eknatha.github.io/linux-command-explainer">Linux Command Explainer</a>
+      <a href="https://github.com/eknatha/linux-for-devops">100 Linux Challenges</a>
+    </div>
+    <div class="footer-col">
+      <h4>Projects</h4>
+      <a href="https://eknathalabs.com">Main Site</a>
+      <a href="https://eknatha.github.io/github-profile-analyzer">Profile Analyzer</a>
+      <a href="https://github.com/eknatha">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 EknathaLabs · labs.eknathalabs.com · Built in public 🚧</p>
+    <div class="social-links">
+      <a href="https://github.com/eknathareddyp" title="GitHub">⌥</a>
+      <a href="https://eknathalabs.com" title="Website">⌂</a>
+    </div>
+  </div>
 </footer>
-
-<script>
-  // Dark/Light Toggle
-  function toggleTheme() {
-    document.body.classList.toggle("light");
-  }
-
-  // Search Filter
-  document.getElementById("search").addEventListener("keyup", function() {
-    let filter = this.value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-      let text = card.innerText.toLowerCase();
-      card.style.display = text.includes(filter) ? "" : "none";
-    });
-  });
-</script>
 
 </body>
 </html>
