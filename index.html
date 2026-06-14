@@ -103,6 +103,12 @@
   .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, transparent 70%); pointer-events: none; }
   .cta-section h2 { font-size: clamp(28px, 4.5vw, 42px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 12px; color: var(--text); }
   .cta-section p { font-size: 16px; color: var(--text2); margin-bottom: 36px; }
+  .live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+  .live-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px 18px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: all 0.22s; }
+  .live-card:hover { border-color: var(--accent); background: var(--surface2); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(56,189,248,0.08); }
+  .live-emoji { font-size: 28px; }
+  .live-name { font-size: 14px; font-weight: 600; color: var(--text); text-align: center; }
+  .live-meta { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: 0.03em; }
   footer { position: relative; z-index: 1; background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 40px 32px; }
   .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
   .footer-brand p { font-size: 13px; color: var(--text3); margin-top: 10px; max-width: 280px; line-height: 1.6; }
@@ -131,16 +137,16 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="https://eknathalabs.com" target="_blank" rel="noopener" class="nav-logo">
     <div class="logo-icon">EL</div>
     <span class="logo-text">eknatha<span>labs</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#">Labs</a></li>
-    <li><a href="#">Linux Docs</a></li>
-    <li><a href="#">Interview Prep</a></li>
-    <li><a href="https://eknathalabs.com" target="_blank">Main Site</a></li>
-    <li><a href="#" class="nav-cta">Notify Me →</a></li>
+    <li><a href="#paths">Labs</a></li>
+    <li><a href="https://eknatha.github.io/linux-command-explainer" target="_blank" rel="noopener">Linux Docs</a></li>
+    <li><a href="https://eknatha.github.io/interview-prep" target="_blank" rel="noopener">Interview Prep</a></li>
+    <li><a href="https://eknathalabs.com" target="_blank" rel="noopener">Main Site</a></li>
+    <li><a href="https://github.com/eknatha" target="_blank" rel="noopener" class="nav-cta">★ Star on GitHub</a></li>
   </ul>
 </nav>
 
@@ -165,8 +171,8 @@
   <h1>Learn by<br><span class="hl">Doing</span>, Not Just <span class="hl2">Reading</span></h1>
   <p class="hero-sub">Real terminal labs, production-grade scenarios, and interactive playgrounds for Linux, Kubernetes, Terraform, CI/CD and cloud — built by a practitioner in the field.</p>
   <div class="hero-actions">
-    <a href="#" class="btn-primary">🔔 Get Early Access</a>
-    <a href="https://eknathalabs.com" class="btn-secondary">Explore Main Site →</a>
+    <a href="#paths" class="btn-primary">See What's Coming →</a>
+    <a href="https://eknathalabs.com" target="_blank" rel="noopener" class="btn-secondary">Explore Main Site →</a>
   </div>
 </section>
 
@@ -193,13 +199,13 @@
 </div>
 
 <!-- LEARNING PATHS -->
-<section class="section">
+<section class="section" id="paths">
   <div class="section-header">
     <div class="section-tag">// learning_paths</div>
     <h2>What You'll <span>Learn</span></h2>
   </div>
   <div class="paths-grid">
-    <a href="#" class="path-card pc-blue">
+    <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" rel="noopener" class="path-card pc-blue">
       <div class="path-icon pi-blue">🐧</div>
       <div class="path-name">Linux for DevOps</div>
       <div class="path-desc">7-module production-grade Linux curriculum. File management, process control, networking, disk ops, log analysis, and system monitoring.</div>
@@ -208,7 +214,7 @@
         <span class="path-tag pt-free">Available</span>
       </div>
     </a>
-    <a href="#" class="path-card pc-green">
+    <a href="#paths" onclick="return false;" style="cursor:default" class="path-card pc-green">
       <div class="path-icon pi-green">☸️</div>
       <div class="path-name">Kubernetes Labs</div>
       <div class="path-desc">Hands-on CKA + CKS exam prep with real cluster scenarios, RBAC, network policies, and GitOps workflows via ArgoCD.</div>
@@ -217,7 +223,7 @@
         <span class="path-tag pt-soon">Coming Soon</span>
       </div>
     </a>
-    <a href="#" class="path-card pc-purple">
+    <a href="#paths" onclick="return false;" style="cursor:default" class="path-card pc-purple">
       <div class="path-icon pi-purple">🏗️</div>
       <div class="path-name">Terraform &amp; IaC</div>
       <div class="path-desc">Multi-cloud infrastructure as code on AWS and Azure. Reusable modules, state management, CI/CD integration, and real-world patterns.</div>
@@ -226,7 +232,7 @@
         <span class="path-tag pt-soon">Coming Soon</span>
       </div>
     </a>
-    <a href="#" class="path-card pc-amber">
+    <a href="#paths" onclick="return false;" style="cursor:default" class="path-card pc-amber">
       <div class="path-icon pi-amber">⚙️</div>
       <div class="path-name">Platform Engineering</div>
       <div class="path-desc">Internal developer platforms, golden paths, GitHub Actions, observability stacks, and the tools that make platform engineers irreplaceable.</div>
@@ -268,22 +274,40 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" id="explore">
   <div class="cta-glow"></div>
-  <h2>Be the First to Know</h2>
-  <p>Drop your email — get notified when labs go live. No spam, ever.</p>
-  <div style="display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
-    <input type="email" placeholder="you@company.com" style="background:var(--surface); border:1px solid var(--border2); border-radius:8px; padding:11px 18px; color:var(--text); font-family:var(--font); font-size:14px; width:280px; outline:none;">
-    <a href="#" class="btn-primary">Notify Me →</a>
+  <h2>Don't Wait — Start Now</h2>
+  <p>The labs are still cooking, but plenty is already live. Dive into the tools practitioners are using today.</p>
+  <div class="live-grid">
+    <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" rel="noopener" class="live-card">
+      <span class="live-emoji">🐧</span>
+      <span class="live-name">Linux Command Explainer</span>
+      <span class="live-meta">~200 commands · live</span>
+    </a>
+    <a href="https://eknatha.github.io/interview-prep" target="_blank" rel="noopener" class="live-card">
+      <span class="live-emoji">📋</span>
+      <span class="live-name">Interview Prep Portal</span>
+      <span class="live-meta">600+ Q&amp;A · live</span>
+    </a>
+    <a href="https://terraform.eknathalabs.com/" target="_blank" rel="noopener" class="live-card">
+      <span class="live-emoji">🏗️</span>
+      <span class="live-name">Terraform Challenge</span>
+      <span class="live-meta">hands-on · live</span>
+    </a>
+    <a href="https://github.com/eknatha" target="_blank" rel="noopener" class="live-card">
+      <span class="live-emoji">★</span>
+      <span class="live-name">Follow on GitHub</span>
+      <span class="live-meta">built in public</span>
+    </a>
   </div>
-  <p style="font-size:12px; color:var(--text3); margin-top:16px; font-family:var(--mono);">↳ or follow along at github.com/eknatha</p>
+  <p style="font-size:12px; color:var(--text3); margin-top:28px; font-family:var(--mono);">↳ new labs ship here as they're ready — bookmark <span style="color:var(--accent)">labs.eknathalabs.com</span></p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo" style="text-decoration:none;">
+      <a href="https://eknathalabs.com" target="_blank" rel="noopener" class="nav-logo" style="text-decoration:none;">
         <div class="logo-icon">EL</div>
         <span class="logo-text" style="font-size:16px;">eknatha<span style="color:var(--accent)">labs</span></span>
       </a>
@@ -304,7 +328,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 EknathaLabs · labs.eknathalabs.com · Built in public 🚧</p>
+    <p>© 2026 EknathaLabs · labs.eknathalabs.com · Built in public 🚧</p>
     <div class="social-links">
       <a href="https://github.com/eknathareddyp" title="GitHub">⌥</a>
       <a href="https://eknathalabs.com" title="Website">⌂</a>
